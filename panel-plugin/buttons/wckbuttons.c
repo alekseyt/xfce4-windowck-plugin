@@ -199,7 +199,7 @@ wckbuttons_new (XfcePanelPlugin *plugin)
     gtk_event_box_set_visible_window(GTK_EVENT_BOX(wb->ebox), FALSE);
     gtk_widget_set_name(wb->ebox, "XfceWckButtonsPlugin");
 
-    wb->hvbox = xfce_hvbox_new (orientation, FALSE, 2);
+    wb->hvbox = xfce_hvbox_new (orientation, FALSE, 0);
 
     /* create buttons */
     wb->button = create_buttons (wb);
