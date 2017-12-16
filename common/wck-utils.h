@@ -36,11 +36,11 @@ typedef struct {
     WnckWorkspace *activeworkspace;    // Active workspace
     WnckWindow *controlwindow;          // Controled window according to only_maximized option
     WnckWindow *activewindow;          // Active window
-    WnckWindow *umaxwindow;            // Upper maximized window
+    // WnckWindow *umaxwindow;            // Upper maximized window
 
-    gulong msh;                         // upper maximized window state handler id
+    // gulong msh;                         // upper maximized window state handler id
     gulong ash;                         // active state handler id
-    gulong mwh;                         // upper maximized workspace handler id
+    // gulong mwh;                         // upper maximized workspace handler id
     gulong sch;                         // window closed handler id
     gulong soh;                         // window opened handler id
     gulong svh;                         // viewport changed handler id
