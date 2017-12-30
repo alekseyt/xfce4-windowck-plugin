@@ -101,12 +101,13 @@ static void on_icon_changed(WnckWindow *controlwindow, WindowckPlugin *wckp)
 static void on_name_changed (WnckWindow *controlwindow, WindowckPlugin *wckp)
 {
     gint i, n;
-    
+
     const gchar *title_text;
 
     if (controlwindow
         && ((wnck_window_get_window_type (controlwindow) != WNCK_WINDOW_DESKTOP)
-            || wckp->prefs->show_on_desktop))
+            || wckp->prefs->show_on_desktop)
+        && (!wckp->prefs->hide_title))
     {
         const gchar *title_color, *title_font, *subtitle_font;
         gchar **part, *title_markup;

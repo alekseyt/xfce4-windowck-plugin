@@ -162,6 +162,14 @@ static void on_icon_on_right_toggled(GtkToggleButton *icon_on_right, WindowckPlu
 }
 
 
+static void on_hide_title_toggled(GtkToggleButton *hide_title, WindowckPlugin *wckp)
+{
+    wckp->prefs->hide_title = gtk_toggle_button_get_active(hide_title);
+
+    on_wck_state_changed (wckp->win->controlwindow, wckp);
+}
+
+
 static void on_show_window_menu_toggled(GtkToggleButton *show_window_menu, WindowckPlugin *wckp)
 {
     GtkWidget *show_app_icon;
@@ -275,7 +283,7 @@ static GtkWidget * build_properties_area(WindowckPlugin *wckp, const gchar *buff
     GtkToggleButton *sync_wm_font;
     GtkRadioButton *only_maximized, *active_window;
     GtkToggleButton *show_on_desktop, *full_name, *two_lines;
-    GtkToggleButton *show_app_icon, *icon_on_right, *show_window_menu;
+    GtkToggleButton *show_app_icon, *icon_on_right, *hide_title, *show_window_menu;
     GtkFontButton *title_font, *subtitle_font;
     GtkWidget *width_unit, *subtitle_font_label;
 
@@ -351,6 +359,17 @@ static GtkWidget * build_properties_area(WindowckPlugin *wckp, const gchar *buff
             }
             else {
                 DBG("No widget with the name \"icon_on_right\" found");
+            }
+
+            hide_title = GTK_TOGGLE_BUTTON(gtk_builder_get_object(wckp->prefs->builder, "hide_title"));
+
+            if (G_LIKELY (hide_title != NULL))
+            {
+                gtk_toggle_button_set_active(hide_title, wckp->prefs->hide_title);
+                g_signal_connect(hide_title, "toggled", G_CALLBACK(on_hide_title_toggled), wckp);
+            }
+            else {
+                DBG("No widget with the name \"show_window_title\" found");
             }
 
             show_window_menu = GTK_TOGGLE_BUTTON(gtk_builder_get_object(wckp->prefs->builder, "show_window_menu"));
